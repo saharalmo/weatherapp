@@ -1,0 +1,66 @@
+/*header */
+.header {
+    display: flex;
+    align-items: center;
+    background-color:#00688B ; 
+    padding: 10px;
+}
+
+.weather-title {
+    font-size: 24px;
+    margin-left: 10px; /* Adjust spacing between the image and the title as needed */
+}
+
+.header img {
+    width: 50px; /* Adjust based image */
+    height: auto;
+}
+ /* end header */
+ 
+/*footer */
+.footer {
+    background-color:#00688B; 
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
+} 
+/*end*/
+
+/*label and button */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.form-container {
+    text-align: center;
+}
+
+.textbox {
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.mat-primary-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: skyblue ;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.mat-primary-button:hover {
+    background-color: teal;
+}
+/*end */

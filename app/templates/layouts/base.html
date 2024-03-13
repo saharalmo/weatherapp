@@ -1,24 +1,27 @@
-
+{% load static %}
 <html lang="en">
    <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width">
+      <title> Weather </title>
+      <link rel ="stylesheet" href="{% static 'css/style.css' %}"> 
 
+  
 </head>
 
 <body>
+     <!--header -->
     {% include 'includes/header.html' %}
+   
 
-    
-    
-    {% block content %}
-        
+       <!--body-->
 
-
+       {% block content %}
+       
     {% endblock content %}
-        
-        
-
+<!-- footer -->
     {% include 'includes/footer.html' %}
+
+
 </body>
 </html>
