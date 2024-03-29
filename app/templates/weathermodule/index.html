@@ -1,6 +1,8 @@
 {% extends "layouts/base.html" %}
 
+
 {% block content %}
+<!DOCTYPE html>
 <body>
 
     <div class="content">
@@ -12,8 +14,81 @@
                 </button>
             </form>
         </div>
+        <div class="row">
+            <div class="card_container" id="weather-container">
+            </div>
+        </div>
+        <div class="row bg-dark" style="padding: 10px;">
+        </div>
+        
     </div>
     
     </body>
     </html>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkWeatherButton = document.getElementById('CheckWeatherButton');
+            checkWeatherButton.addEventListener('click', () => {
+                const cityInput = document.getElementById('cityInput');
+                const city = cityInput.value;
+                fetch(`http://api.weatherapi.com/v1/current.json?key=4a16c5378a014961a27184954242803&q=${city}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const weatherContainer = document.getElementById('weather-container');
+                        if (weatherContainer) {
+                            
+                            createElements([data.current], weatherContainer, data.location);
+                        }
+                    })
+                    .catch(error => console.error('Fetch error:', error));
+            });
+        });
+        
+        function createElements(weatherData, weatherContainer, location) {
+            weatherContainer.innerHTML = '';
+        
+            weatherData.forEach(weather => {
+                const cardContainer = document.createElement('div');
+                cardContainer.classList.add('card_container');
+                
+                const materialCard = document.createElement('div');
+                materialCard.classList.add('material-card');
+        
+                const weatherIcon = document.createElement('img');
+                weatherIcon.src = `https:${weather.condition.icon}`; 
+                weatherIcon.alt = 'Weather Icon';
+        
+                const temperature = document.createElement('span'); 
+                temperature.classList.add('temperature'); 
+                temperature.textContent = `${weather.temp_c}°C`; 
+        
+                const cityName = document.createElement('span');
+                cityName.classList.add('city');
+                cityName.textContent = location.name;
+        
+                const description = document.createElement('span');
+                description.classList.add('description');
+                description.textContent = weather.condition.text;
+        
+                const updatedDate = document.createElement('small');
+                updatedDate.classList.add('updated_date');
+                updatedDate.textContent = `Last Updated: ${weather.last_updated}`; 
+        
+                materialCard.appendChild(weatherIcon);
+                materialCard.appendChild(temperature);
+                materialCard.appendChild(cityName);
+                materialCard.appendChild(description);
+                materialCard.appendChild(updatedDate);
+        
+                cardContainer.appendChild(materialCard);
+                weatherContainer.appendChild(cardContainer);
+            });
+        }
+
+        
+        </script>
+        
+
+
+    
 {% endblock content %}
