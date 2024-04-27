@@ -1,6 +1,4 @@
 {% extends "layouts/base.html" %}
-
-
 {% block content %}
 <!DOCTYPE html>
 <body>
@@ -17,12 +15,10 @@
         <div class="row">
             <div class="card_container" id="weather-container">
             </div>
-        </div>
-        <div class="row bg-dark" style="padding: 10px;">
-        </div>
-        
+        </div> 
     </div>
-    
+
+
     </body>
     </html>
     <script>
@@ -88,6 +84,57 @@
         
         </script>
         
+<style>
+    .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: 'Arial', sans-serif;
+        padding: 20px;
+      }
+      
+      /* Form container with a little spacing */
+      .form-container {
+        margin-bottom: 30px;
+      }
+      
+      /* Styling the text input */
+      .textbox {
+        padding: 10px;
+        margin-right: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+      }
+      
+      /* Button styles with a primary color */
+      .mat-primary-button {
+        padding: 10px 20px;
+        background-color: skyblue;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+      }
+      
+      .mat-primary-button:hover {
+        background-color: teal;
+      }
+      
+      /* Card container */
+      .card_container {
+        width: 80%;
+        border-radius: 8px;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: box-shadow 0.3s ease;
+      }
+      
+</style>
 
 
     

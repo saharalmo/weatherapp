@@ -27,7 +27,7 @@
 } 
 /*end*/
 
-/*label and button */
+/*label and button 
 body, html {
     height: 100%;
     margin: 0;
@@ -65,7 +65,7 @@ body, html {
 }
 /*end */
 
-/*card */
+/*card 
 .form-container {
     text-align: center;
     margin-bottom: 20px; 
@@ -79,5 +79,3 @@ body, html {
 }
 
 /*end*/
-
-
