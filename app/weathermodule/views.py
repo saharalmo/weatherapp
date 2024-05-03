@@ -1,10 +1,13 @@
-from django.shortcuts import render 
+from django.shortcuts import render , redirect 
 from datetime import datetime as dt 
-from django.conf import settings
 from django.http.response import JsonResponse
 from django.http import JsonResponse
 import requests
 from .models import weather 
+import json
+
+
+
 def index(request):
     return render(request, 'weathermodule/index.html')
 
@@ -33,4 +36,5 @@ def request_to_weatherapi(city):
         "api_response": res.text 
     }
     
-    
+
+     

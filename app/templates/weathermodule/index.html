@@ -2,18 +2,19 @@
 {% block content %}
 <!DOCTYPE html>
 <body>
-
+<!-- index.html -->
     <div class="content">
         <div class="form-container">
             <form>
                 <input type="text" id="cityInput" class="textbox" placeholder="Check your city weather">
                 <button class="mat-primary-button" type="button" id="CheckWeatherButton">
                     Check Weather
-                </button>
+                </button>  
             </form>
         </div>
         <div class="row">
             <div class="card_container" id="weather-container">
+                </div>
             </div>
         </div> 
     </div>
@@ -32,26 +33,23 @@
                     .then(data => {
                         const weatherContainer = document.getElementById('weather-container');
                         if (weatherContainer) {
-                            
-                            createElements([data.current], weatherContainer, data.location);
+                            createWeatherElements([data.current], weatherContainer, data.location);
                         }
                     })
                     .catch(error => console.error('Fetch error:', error));
             });
         });
-        
-        function createElements(weatherData, weatherContainer, location) {
-            weatherContainer.innerHTML = '';
-        
+    
+        function createWeatherElements(weatherData, weatherContainer, location) {
             weatherData.forEach(weather => {
                 const cardContainer = document.createElement('div');
                 cardContainer.classList.add('card_container');
-                
+        
                 const materialCard = document.createElement('div');
                 materialCard.classList.add('material-card');
         
                 const weatherIcon = document.createElement('img');
-                weatherIcon.src = `https:${weather.condition.icon}`; 
+                weatherIcon.src = `https:${weather.condition.icon}`;  
                 weatherIcon.alt = 'Weather Icon';
         
                 const temperature = document.createElement('span'); 
@@ -60,82 +58,124 @@
         
                 const cityName = document.createElement('span');
                 cityName.classList.add('city');
-                cityName.textContent = location.name;
+                cityName.textContent = location.name; 
         
                 const description = document.createElement('span');
-                description.classList.add('description');
+                description.classList.add('description'); 
                 description.textContent = weather.condition.text;
         
                 const updatedDate = document.createElement('small');
                 updatedDate.classList.add('updated_date');
                 updatedDate.textContent = `Last Updated: ${weather.last_updated}`; 
         
-                materialCard.appendChild(weatherIcon);
-                materialCard.appendChild(temperature);
+                // Create delete button
+                const deleteButton = document.createElement('button');
+                deleteButton.classList.add('delete_button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.addEventListener('click', () => {
+                    // Remove the card container when delete button is clicked
+                    cardContainer.remove();
+                });
+        
+                materialCard.appendChild(weatherIcon); 
+                materialCard.appendChild(temperature); 
                 materialCard.appendChild(cityName);
                 materialCard.appendChild(description);
                 materialCard.appendChild(updatedDate);
+                materialCard.appendChild(deleteButton); // Append delete button to the weather card
         
                 cardContainer.appendChild(materialCard);
                 weatherContainer.appendChild(cardContainer);
             });
         }
-
         
-        </script>
-        
+    </script>
+    
+  
 <style>
-    .content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        font-family: 'Arial', sans-serif;
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
         padding: 20px;
-      }
-      
-      /* Form container with a little spacing */
-      .form-container {
-        margin-bottom: 30px;
-      }
-      
-      /* Styling the text input */
-      .textbox {
+    }
+    
+    /* Form Styles */
+    .form-container {
+        text-align: center;
+    }
+    
+    .textbox {
+        margin-bottom: 10px;
         padding: 10px;
-        margin-right: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
         font-size: 16px;
-      }
-      
-      /* Button styles with a primary color */
-      .mat-primary-button {
+    }
+    
+    .mat-primary-button {
         padding: 10px 20px;
-        background-color: skyblue;
+        font-size: 16px;
+        background-color: skyblue ;
         color: white;
         border: none;
+        cursor: pointer;
+    }
+    
+    .mat-primary-button:hover {
+        background-color: teal;
+    }
+    
+    /* Card Styles */
+    .card_container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    .material-card {
+        flex: 0 0 calc(33.33% - 20px);
+        margin-bottom: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+    
+    .temperature {
+        font-size: 24px;
+        font-weight: bold;
+    }
+    
+    .city {
+        font-size: 20px;
+        font-weight: bold;
+    }
+    
+    .description {
+        font-size: 16px;
+    }
+    
+    .updated_date {
+        font-size: 12px;
+        color: #666;
+    }
+    .delete_button {
+        background-color: #dc3545; /* Red color */
+        color: #fff; /* White text color */
+        border: none;
+        padding: 8px 16px; /* Padding for the button */
         border-radius: 4px;
         cursor: pointer;
-        font-size: 16px;
-        transition: background-color 0.3s ease;
-      }
-      
-      .mat-primary-button:hover {
-        background-color: teal;
-      }
-      
-      /* Card container */
-      .card_container {
-        width: 80%;
-        border-radius: 8px;
-        background-color: white;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        transition: box-shadow 0.3s ease;
-      }
-      
+        margin-top: 10px; /* Add some space between the button and other elements */
+    }
+    
+    .delete_button:hover {
+        background-color: #c82333; 
+    }
 </style>
 
-
-    
 {% endblock content %}

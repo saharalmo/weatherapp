@@ -19,3 +19,15 @@ class Meta:
         ordering = ['-temperature']  # Orders records by temperature in descending order
         verbose_name = 'Weather Report'
         verbose_name_plural = 'Weather Reports'
+        
+        
+        
+
+
+
+
+
+
+
+        
+    
